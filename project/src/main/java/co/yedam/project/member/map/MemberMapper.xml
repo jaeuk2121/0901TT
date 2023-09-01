@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.project.member.map.MemberMapper">
+	<select id="clientSelect" parameterType="co.yedam.project.member.service.MemberVO" resultType="co.yedam.project.member.service.MemberVO">
+		SELECT*
+		FROM CLIENT
+		WHERE CLIENT_ID = #{clientId}
+		<if test="clientPassword !=null">
+		AND CLIENT_PASSWORD = #{clientPassword}</if>
+	</select>
+</mapper>
