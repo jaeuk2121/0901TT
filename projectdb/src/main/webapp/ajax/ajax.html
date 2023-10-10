@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax.html</title>
+<script>
+	let json =` [{"name": "홍길동","age":20},{"name": "김길동","age":22}]`;
+	//json 포맷의 문자=> 자바스크립트의 객체.
+	console.log(json);
+	let obj = JSON.parse(json);
+	console.log(obj);
+</script>
+</head>
+<body>
+	<h3>Asynchronous JavaScript And Xml</h3>
+	<ul id="list">
+		<li>first + last</li>
+		
+	</ul>
+	<script>
+
+		let ajx = new XMLHttpRequest();
+		ajx.open('get','./dataset.xml');	// eXtensible Markup Language.
+		ajx.send();
+		
+		ajx.onload = genXML;
+		
+		function genXML(){
+			let xml = ajx.responseXML;
+			let records = xml.getElementsByTagName('record');
+			console.log(records[0].innerHTML);
+			for(let i=0;i<records.length;i++){
+				let li = document.createElement('li');
+				li.innerText = records[i].children[1].innerHTML + ", "+ records[i].children[2].innerHTML;
+				document.getElementById('list').appendChild(li);
+		}
+	}
+		let ajx2 = new XMLHttpRequest;
+		ajx2.open('get','./MOCK_DATA.json');	// eXtensible Markup Language.
+		ajx2.send();
+		
+		ajx2.onload = getJson;
+		
+	function getJson(){	//xml보다 깔끔 genXML참조
+		
+		console.log(ajx2.responseText);
+		let data = JSON.parse(ajx2.responseText);
+		console.log(data);
+		for(let i=0;i<data.length;i++){
+				let li = document.createElement('li');
+				li.innerText = data[i].first_name+ " || "+ data[i].last_name;
+				document.getElementById('list').appendChild(li);
+	}}
+	
+	let ajx3 = new XMLHttpRequest;
+		ajx3.open('get','../ajaxreplylist.do?nid=112');	// eXtensible Markup Language.
+		ajx3.send();
+		
+		ajx3.onload = getReply;
+	function getReply(){
+				console.log(ajx3.responseText);
+	}
+	</script>
+</body>
+</html>

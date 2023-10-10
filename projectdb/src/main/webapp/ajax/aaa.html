@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		.outer {
+			width: 420px;
+			height: 150px;
+			background-color: yellow;
+		}
+
+		.outer span {
+			display: inline-block;
+			width: 90px;
+			padding: 2px;
+			margin: 2px;
+			border: 1px solid black;
+			text-align: center;
+		}
+	</style>
+</head>
+
+	<input type="text" class="userVal">
+	<button id="addBtn">입력</button>
+
+
+	<div class="outer">
+		<span>hello</span>
+		<span>hello</span>
+		<span>hello</span>
+	</div>
+	
+	
+	
+	<script>
+		let str =
+			`Lorem ipum asd zxc qwe grb ngngf aaaa sscxc s wqe ww ered ccxv xca`
+		let wordAry = str.split(' ');
+		for (let i = 0; i < wordAry.length; i++) {
+
+			let span = document.createElement('span');
+			span.innerText = wordAry[i];
+			document.querySelector('.outer').appendChild(span);
+
+		}
+		//입력이벤트
+		document.querySelector('input.userVal').addEventListener('change', function (e) {
+			console.log(this.value);
+			let userVal = this.value;
+
+			document.querySelectorAll('.outer span').forEach(span => {
+				if(span.innerText == userVal){
+				span.remove();
+				this.value='';
+				document.querySelector('input.userVal').focus();
+				}
+			})
+		})
+
+
+	</script>
+
+</body>
+
+</html>
